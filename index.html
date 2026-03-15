@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DMS Cananguinha · Gestão Sustentável</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter + Lora -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== VARIÁVEIS ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --verde-institucional: #2b7a4b;
+      --verde-claro: #86b89c;
+      --azul-confiante: #195a7a;
+      --cinza-fundo: #f7f9f8;
+      --sombra-elegante: 0 10px 30px -5px rgba(30, 60, 50, 0.08);
+      --borda-sutil: rgba(150, 170, 160, 0.2);
+      --transicao-suave: all 0.25s ease-out;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cinza-fundo);
+      color: #2c3e3a;
+      line-height: 1.5;
+    }
+    h1, h2, h3, h4, .titulo-elegante {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #1e3b35;
+    }
+    /* ===== HEADER ===== */
+    .hero-section {
+      position: relative;
+      background: linear-gradient(100deg, rgba(25, 60, 45, 0.85) 0%, rgba(25, 90, 122, 0.75) 100%),
+                  url('C:/Users/MZ digital/Desktop/DMS/ChatGPT Image 8_03_2026, 18_50_46 .png') center/cover no-repeat;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      color: white;
+      isolation: isolate;
+    }
+    .hero-section h1 { color: white; font-size: 3.5rem; text-shadow: 0 4px 18px rgba(0,30,10,0.4); }
+    .hero-section .lead {
+      background: rgba(0,0,0,0.18);
+      backdrop-filter: blur(3px);
+      display: inline-block;
+      padding: 0.6rem 2rem;
+      border-radius: 40px;
+      border-left: 3px solid var(--verde-claro);
+    }
+    .particula-sutil {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 30% 30%, rgba(255,255,245,0.03) 2px, transparent 2px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+    /* ===== NAVBAR ===== */
+    .navbar-profissional {
+      background: rgba(255,255,255,0.90) !important;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 6px 20px rgba(0,30,20,0.06);
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--borda-sutil);
+    }
+    .navbar-profissional .navbar-brand {
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      color: var(--verde-institucional) !important;
+      font-size: 1.7rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .navbar-profissional .navbar-brand img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      transition: var(--transicao-suave);
+      border-radius: 12px;
+      margin-top: -0.5rem;
+
+    }
+    .navbar-profissional .navbar-brand img:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -8px #1d4a33;
+    }
+    .navbar-profissional .nav-link {
+      color: #2f4a41 !important;
+      font-weight: 500;
+      margin: 0 0.5rem;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .navbar-profissional .nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px;
+      background: var(--azul-confiante); transition: 0.3s;
+    }
+    .navbar-profissional .nav-link:hover::after { width: 100%; }
+    /* ===== CARDS ===== */
+    .card-sutil {
+      background: white; border-radius: 28px; padding: 2.2rem 1.8rem;
+      border: 1px solid var(--borda-sutil); box-shadow: var(--sombra-elegante);
+      transition: var(--transicao-suave); height: 100%;
+    }
+    .card-sutil:hover { transform: translateY(-5px); border-color: var(--verde-claro); }
+    .icone-elegante {
+      width: 64px; height: 64px; background: #ecf7f0; border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: var(--verde-institucional); margin-bottom: 1.8rem;
+    }
+    .card-sutil:hover .icone-elegante { background: var(--verde-institucional); color: white; }
+    /* imagem ilustrativa nos cards */
+    .img-ilustrativa {
+      width: 100%; height: 160px; object-fit: cover;
+      border-radius: 20px; margin-bottom: 1.2rem;
+      border: 2px solid var(--borda-sutil); transition: 0.2s;
+    }
+    .card-sutil:hover .img-ilustrativa { border-color: var(--verde-claro); }
+    /* equipa com clique (modal) */
+    .membro-elegante {
+      background: white; border-radius: 30px; padding: 2rem 1rem 1.5rem;
+      text-align: center; box-shadow: var(--sombra-elegante);
+      transition: var(--transicao-suave); border: 1px solid var(--borda-sutil);
+      cursor: pointer;
+    }
+    .membro-elegante:hover {
+      transform: scale(1.02) translateY(-5px);
+      border-color: var(--verde-claro);
+      box-shadow: 0 25px 35px -10px rgba(30,70,50,0.2);
+    }
+    .avatar-suave {
+      width: 120px; height: 120px; margin: 0 auto 1.2rem;
+      background: #daece3; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 2.4rem; font-weight: 500; color: var(--verde-institucional);
+      border: 3px solid white; box-shadow: 0 8px 18px -8px #264d3b;
+      transition: 0.2s;
+    }
+    .membro-elegante:hover .avatar-suave { background: var(--verde-institucional); color: white; }
+    /* outros */
+    .meta-linha {
+      background: #ffffffdd; border-radius: 40px; padding: 1.8rem 2rem;
+      border-left: 5px solid var(--verde-institucional); box-shadow: var(--sombra-elegante);
+      border-right: 1px solid var(--borda-sutil); border-top: 1px solid var(--borda-sutil); border-bottom: 1px solid var(--borda-sutil);
+    }
+    .meta-linha:hover { border-left-width: 8px; border-left-color: var(--azul-confiante); }
+    .bloco-objectivo { background: #e9f1ef; border-radius: 32px; padding: 2.8rem; border: 1px solid var(--borda-sutil); }
+    footer { background: #1d3e33; color: #f0f5f2; border-top: 1px solid #346d56; }
+    .btn-profissional { border-radius: 50px; padding: 0.7rem 2.2rem; font-weight: 500; transition: var(--transicao-suave); border: 1px solid transparent; }
+    .btn-verde-suave { background: var(--verde-institucional); color: white; }
+    .btn-verde-suave:hover { background: #1e5f3e; transform: translateY(-2px); }
+    .btn-outline-azul { border-color: var(--azul-confiante); color: var(--azul-confiante); }
+    .btn-outline-azul:hover { background: var(--azul-confiante); color: white; }
+    .section-title:after { content: ''; display: block; width: 70px; height: 3px; background: var(--verde-claro); margin-top: 0.5rem; }
+    /* modal custom */
+    .modal-content { border-radius: 30px; border: none; box-shadow: 0 30px 50px -15px #12312a; }
+    .modal-header { border-bottom: 1px solid var(--borda-sutil); background: #ecf7f0; border-radius: 30px 30px 0 0; }
+    .modal-body { padding: 2rem; }
+    .detalhe-func { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .detalhe-func i { color: var(--verde-institucional); width: 28px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-profissional fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src=" C:\Users\MZ digital\Desktop\DMS\logo.png" width="50px" height="50px">
+        <span>CANANGUINHA</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarProf">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarProf">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#apresentacao">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#metas">Metas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#equipa">Equipa</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero-section">
+    <div class="particula-sutil"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <span class="badge bg-light text-dark px-4 py-2 mb-3 rounded-pill">
+            <i class="fas fa-seedling me-2" style="color: var(--verde-institucional);"></i>sustentabilidade · saneamento
+          </span>
+          <h1>Gestão de resíduos com excelência</h1>
+          <p class="lead">recolha, separação e valorização — por um futuro mais limpo em Angola</p>
+          <div class="d-flex gap-3 mt-4">
+            <a href="#contacto" class="btn btn-profissional btn-verde-suave px-4 py-2"><i class="fas fa-phone-alt me-2"></i>contactar</a>
+            <a href="#apresentacao" class="btn btn-profissional btn-outline-azul px-4 py-2">saber mais</a>
+          </div>
+          <div class="row mt-5 g-4">
+            <div class="col-4"><i class="fas fa-users me-2"></i> <strong>45+ colaboradores</strong></div>
+            <div class="col-4"><i class="fas fa-truck me-2"></i> <strong>20+ ton/mês</strong></div>
+            <div class="col-4"><i class="fas fa-recycle me-2"></i> <strong>parcerias activas</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NIF -->
+  <div class="container mt-4">
+    <div class="d-flex justify-content-center">
+      <div class="bg-white px-5 py-2 rounded-pill shadow-sm border" style="border-color: var(--borda-sutil) !important;">
+        <i class="fas fa-file-invoice me-2" style="color: var(--verde-institucional);"></i> <strong>NIF 5002762986</strong> · Luanda, 28 Janeiro 2026
+      </div>
+    </div>
+  </div>
+
+  <!-- APRESENTAÇÃO COM IMAGENS ILUSTRATIVAS -->
+  <section id="apresentacao" class="py-6" style="padding: 5rem 0;">
+    <div class="container">
+      <h2 class="section-title">DMS–Cananguinha</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card-sutil">
+            <img class="img-ilustrativa" src="C:\Users\MZ digital\Desktop\DMS\Gemini_Generated_Image_e0ry1se0ry1se0ry.png" alt="Equipe de recolha">
+            <div class="icone-elegante"><i class="fas fa-truck"></i></div>
+            <h3 class="h4">Recolha & saneamento</h3>
+            <p class="text-secondary">Zonas urbanas, suburbanas, hospitais, escolas, mercados. Recolhemos caixas, sacos, bidões, plásticos e resíduos sólidos urbanos.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card-sutil">
+            <img class="img-ilustrativa" src="C:\Users\MZ digital\Desktop\DMS\Gemini_Generated_Image_kdtzxbkdtzxbkdtz.png" alt="Separação de resíduos">
+            <div class="icone-elegante"><i class="fas fa-rotate-left"></i></div>
+            <h3 class="h4">Separação & reciclagem</h3>
+            <p class="text-secondary">Valorização de recicláveis, parcerias com fábricas, economia circular. Transformamos resíduo em renda.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- OBJETIVOS -->
+      <div class="bloco-objectivo mt-5">
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <h2 class="titulo-elegante" style="color: var(--azul-confiante);">objectivos</h2>
+            <p class="small text-secondary">geral + específicos</p>
+          </div>
+          <div class="col-md-8">
+            <p class="fw-bold"><i class="fas fa-bullseye me-2" style="color: var(--verde-institucional);"></i> Geral: contribuir para a melhoria do saneamento e gestão sustentável de resíduos sólidos.</p>
+            <div class="row mt-3">
+              <div class="col-sm-6 mb-2"><i class="fas fa-check-circle me-2" style="color: var(--verde-institucional);"></i>Recolha eficiente e redução de lixo</div>
+              <div class="col-sm-6 mb-2"><i class="fas fa-check-circle me-2" style="color: var(--verde-institucional);"></i>Separação e valorização de recicláveis</div>
+              <div class="col-sm-6 mb-2"><i class="fas fa-check-circle me-2" style="color: var(--verde-institucional);"></i>Sensibilização comunitária</div>
+              <div class="col-sm-6 mb-2"><i class="fas fa-check-circle me-2" style="color: var(--verde-institucional);"></i>Criar emprego via economia circular</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METAS -->
+  <section id="metas" class="py-5" style="background: #f0f5f2;">
+    <div class="container">
+      <h2 class="section-title">metas estratégicas</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="meta-linha">
+            <span class="badge-prazo verde mb-3 d-inline-block"><i class="far fa-clock me-1"></i> curto prazo (1-2 anos)</span>
+            <ul class="list-unstyled mt-3 fs-5">
+              <li><i class="fas fa-arrow-right me-3" style="color: var(--verde-institucional);"></i>Expandir atuação</li>
+              <li><i class="fas fa-arrow-right me-3" style="color: var(--verde-institucional);"></i>Parcerias com fábricas de reciclagem</li>
+              <li><i class="fas fa-arrow-right me-3" style="color: var(--verde-institucional);"></i>Aquisição de equipamentos</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="meta-linha">
+            <span class="badge-prazo mb-3 d-inline-block" style="background:#ddecf0; color:var(--azul-confiante);"><i class="far fa-calendar me-1"></i> longo prazo (3-5 anos)</span>
+            <ul class="list-unstyled mt-3 fs-5">
+              <li><i class="fas fa-arrow-right me-3" style="color: var(--azul-confiante);"></i>Centro próprio de triagem</li>
+              <li><i class="fas fa-arrow-right me-3" style="color: var(--azul-confiante);"></i>Frota própria de viaturas</li>
+              <li><i class="fas fa-arrow-right me-3" style="color: var(--azul-confiante);"></i>Expandir para outras províncias</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- IMPACTO -->
+      <div class="row mt-5">
+        <h3 class="titulo-elegante mb-4">impacto esperado</h3>
+        <div class="col-md-4"><div class="card-sutil text-center p-4"><i class="fas fa-leaf fa-2x mb-3 text-verde"></i><h5>redução da poluição</h5><p class="small">saúde pública e ambientes mais limpos</p></div></div>
+        <div class="col-md-4"><div class="card-sutil text-center p-4"><i class="fas fa-hand-holding-heart fa-2x mb-3 text-azul"></i><h5>geração de renda</h5><p class="small">economia circular e inclusão</p></div></div>
+        <div class="col-md-4"><div class="card-sutil text-center p-4"><i class="fas fa-city fa-2x mb-3 text-verde"></i><h5>comunidades valorizadas</h5><p class="small">imagem positiva e autoestima</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPA COM MODAL (CLICÁVEL) -->
+  <section id="equipa" class="py-5">
+    <div class="container">
+      <h2 class="section-title">organograma</h2>
+      <div class="row g-4">
+        <!-- Cada membro com data-atributos para o modal -->
+        <div class="col-md-4 col-sm-6"  onclick="abrirModal('Elizabet Segunda Fecayamale', 'Secretária', '')">
+          <div class="membro-elegante"><img src="C:\Users\MZ digital\Desktop\DMS\projectos.png" width="150px" height="150px" class="foto-equipe" alt="Luísa Falcão"><div > 
+          </div><h5>Elizabet Segunda Fecayamale</h5><p class="text-secondary">Secretária</p></div>
+        </div>
+        <div class="col-md-4 col-sm-6"  onclick="abrirModal('Luciana Edna Chilembo', 'Directora Comercial', '')">
+          <div class="membro-elegante"><img src="C:\Users\MZ digital\Desktop\DMS\Retrato elegante de mulher sorridente.png " width="150px" height="150px" class="foto-equipe" alt="Luísa Falcão"><div > 
+          </div><h5>Luciana Edna Chilembo</h5><p class="text-secondary">Directora Comercial</p></div>
+        </div>
+         <div class="col-md-4 col-sm-6"  onclick="abrirModal('Henrique Katema Tchikunga', 'Director De Recursos Humanos', '')">
+          <div class="membro-elegante"><img src="C:\Users\MZ digital\Desktop\DMS\gerente.png " width="150px" height="150px" class="foto-equipe" alt="Luísa Falcão"><div > 
+          </div><h5>Henrique Katema Tchikunga</h5><p class="text-secondary">Director De Recursos Humanos</p></div>
+        </div>
+         <div class="col-md-4 col-sm-6"  onclick="abrirModal('Avelino Evaristo Celestino', 'Director Geral', '')">
+          <div class="membro-elegante"><img src="C:\Users\MZ digital\Desktop\DMS\Director.png " width="150px" height="150px" class="foto-equipe" alt="Luísa Falcão"><div > 
+          </div><h5>Avelino Evaristo Celestino</h5><p class="text-secondary">Director Geral</p></div>
+        </div>
+        <div class="col-md-4 col-sm-6"  onclick="abrirModal('Cristina Martins Luciano', 'Tesoureira', '.')">
+          <div class="membro-elegante"><img src="C:\Users\MZ digital\Desktop\DMS\Retrato de mulher africana sorridente.png" width="150px" height="150px" class="foto-equipe" alt="Luísa Falcão"><div > 
+          </div><h5>Cristina Martins Luciano</h5><p class="text-secondary">Tesoureira</p></div>
+        </div>
+        <div class="col-md-4 col-sm-6"  onclick="abrirModal('Domingos Mande Silva Cananga', Financeiro e Gestor de Projectos', '')">
+          <div class="membro-elegante"><img src="C:\Users\MZ digital\Desktop\DMS\co.png " width="150px" height="150px" class="foto-equipe" alt="Luísa Falcão"><div > 
+          </div><h5>Domingos Mande Silva Cananga</h5><p class="text-secondary">Financeiro e Gestor de Projectos</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL (único) -->
+  <div class="modal fade" id="modalFuncionario" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title titulo-elegante" id="modalTitulo">Nome</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="avatar-suave" id="modalAvatar" style="width: 70px; height: 70px; font-size: 1.8rem; margin:0;">AC</div>
+            <div><strong id="modalCargo">Cargo</strong></div>
+          </div>
+          <p id="modalDescricao" class="text-secondary">Descrição detalhada do funcionário.</p>
+          <hr>
+          <div class="detalhe-func"><i class="fas fa-phone-alt me-2"></i> disponível</div>
+          <div class="detalhe-func"><i class="fas fa-envelope me-2"></i> email@dmscananguinha.ao</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+ <section id="contacto" class="py-5" style="background: #f0f5f2;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="card-sutil p-5">
+            <h3 class="titulo-elegante mb-4">estabeleça contacto</h3>
+            <p><i class="fas fa-envelope me-2" style="color: var(--verde-institucional);"></i> geral@dmscananguinha.ao · +244 923 456 789</p>
+            <hr class="my-4">
+            <div class="d-flex gap-3">
+              <a href="https://wa.me/244924426090" target="_blank" class="btn btn-profissional btn-verde-suave flex-fill py-2"><i class="fab fa-whatsapp me-2"></i>WhatsApp</a>
+              <a href="tel:+244924426090" class="btn btn-profissional btn-outline-azul flex-fill py-2"><i class="fas fa-phone-alt me-2"></i>Ligar</a>
+            </div>
+            <div class="text-center text-muted mt-4 small">
+              <i class="fas fa-file-invoice me-1"></i> NIF 5002762986  ·  Luanda, Angola
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-md-6"><h5><i class="fas fa-recycle me-2"></i>DMS CANANGUINHA</h5><p class="small">Prestação de serviços · Saneamento e gestão de resíduos</p></div>
+        <div class="col-md-3"><h6>Mapa</h6><ul class="list-unstyled small"><li>Início</li><li>Sobre</li><li>Metas</li></ul></div>
+        <div class="col-md-3"><h6>Contacto</h6><p class="small mb-0">Luanda, 28 Jan 2026</p></div>
+      </div>
+      <div class="text-center pt-3 small opacity-75">© 2026 DMS–Cananguinha. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+  <!-- MODAL SCRIPT -->
+  <script>
+    // função para abrir modal com dados dinâmicos
+    function abrirModal(nome, cargo, descricao) {
+      document.getElementById('modalTitulo').innerText = nome;
+      document.getElementById('modalCargo').innerText = cargo;
+      document.getElementById('modalDescricao').innerText = descricao;
+      
+      // define iniciais para o avatar (primeira letra do nome e sobrenome)
+      let partes = nome.split(' ');
+      let iniciais = (partes.length > 1) ? partes[0][0] + partes[partes.length-1][0] : nome.substring(0,2);
+      document.getElementById('modalAvatar').innerText = iniciais.toUpperCase();
+      
+      let modal = new bootstrap.Modal(document.getElementById('modalFuncionario'));
+      modal.show();
+    }
+
+    // fechar navbar ao clicar em link
+    document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => {
+      const nav = document.getElementById('navbarProf');
+      if (nav.classList.contains('show')) new bootstrap.Collapse(nav).hide();
+    }));
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
